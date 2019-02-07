@@ -15,6 +15,9 @@ public class Rock extends WorldObject {
 	 * https://en.wikipedia.org/wiki/Shades_of_gray#Cool_grays
 	 * https://en.wikipedia.org/wiki/Shades_of_gray#Warm_grays
 	 */
+	
+	int color;
+	
 	Color[] ROCK_COLORS = new Color[] {
 			new Color(144,144,192),
 			new Color(145,163,176),
@@ -27,7 +30,10 @@ public class Rock extends WorldObject {
 			new Color(72,60,50)
 	};
 	
-	// TODO(lab): introduce a member here that indexes the ROCK_COLORS array.
+	// Indexes the ROCK_COLORS array.
+	public Color getRockColor() {
+		return ROCK_COLORS[this.color];
+	}
 	
 	/**
 	 * Construct a Rock in our world.
@@ -35,8 +41,9 @@ public class Rock extends WorldObject {
 	 */
 	public Rock(World world) {
 		super(world);
-		// TODO(lab): initialize your rock color index to a random number!
-		// Note that all WorldObjects have a ``rand`` available so you don't need to make one.
+		
+		// Initialize rock color index to a random number.
+		this.color = rand.nextInt(ROCK_COLORS.length-1);
 	}
 
 	/**
@@ -44,8 +51,9 @@ public class Rock extends WorldObject {
 	 */
 	@Override
 	public void draw(Graphics2D g) {
-		// TODO(lab): use the right color in here...
-		g.setColor(Color.gray);
+		Color rockColor = getRockColor();
+		g.setColor(rockColor);
+		
 		RoundRectangle2D rock = new RoundRectangle2D.Double(-.5,-.5,1,1,0.3,0.3);
 		g.fill(rock);
 	}
