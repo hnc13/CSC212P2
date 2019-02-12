@@ -43,6 +43,11 @@ public class Fish extends WorldObject {
 	public void markAsPlayer() {
 		this.player = true;
 	}
+	
+	/**
+	 * Whether or not the fish is scared.
+	 */
+	boolean actScared = false;
 
 
 	/**
@@ -53,6 +58,11 @@ public class Fish extends WorldObject {
 	public Fish(int color, World world) {
 		super(world);
 		this.color = color;
+		
+		//Randomly decide if a fish is scared.
+		if (rand.nextDouble() < 0.5) {
+			this.actScared = true;
+		}
 	}
 	
 	/**
